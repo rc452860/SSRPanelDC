@@ -1,0 +1,58 @@
+version: '3'
+services:
+  # nginx:
+  #   build:
+  #     context: docker/nginx
+  #   volumes:
+  #     - ./src/SSRPanel:/var/www
+  #     - ./src/index.html:/var/www/public/index.html
+  #     - ./config/nginx/nginx.conf:/etc/nginx/nginx.conf
+  #     - ./log/nginx:/var/log/nginx
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   command: [nginx-debug, '-g', 'daemon off;']
+  #   depends_on:
+  #     - php-fpm
+  #   logging:
+  #     options:
+  #       max-size: "10m"
+  #       max-file: "3"
+  #   links:
+  #     - php-fpm
+
+  php-fpm:
+    build:
+      context: docker/php-fpm
+    volumes:
+      - ./src/SSRPanel:/var/www
+      - ./docker/php-fpm/bootstrap.sh:/var/www/bootstrap.sh
+      - ./src/info.php:/var/www/public/info.php
+      - ./src/.env:/var/www/.env
+    logging:
+      options:
+        max-size: "100m"
+        max-file: "3"
+    ports:
+      - "9000:9000"
+
+  caddy:
+    image: abiosoft/caddy:latest
+    volumes:
+      - ./docker/caddy/Caddyfile:/etc/Caddyfile
+      - ./docker/caddy/data:/root/.caddy
+      - ./src/SSRPanel:/var/www
+
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - php-fpm
+    depends_on:
+      - php-fpm
+    logging:
+      options:
+        max-size: "100m"
+        max-file: "3"
+
+    

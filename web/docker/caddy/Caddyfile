@@ -1,0 +1,10 @@
+*:80 {
+    gzip
+    root /var/www/public
+    log /root/.caddy/access.log
+    fastcgi / php-fpm:9000 php
+    rewrite {
+        to {path} {path}/ /index.php?{query}
+    }
+
+}
