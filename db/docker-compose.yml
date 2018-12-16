@@ -6,6 +6,8 @@ services:
     volumes:
       - ./mysql/my.cnf:/etc/mysql/my.cnf
       - ./data:/var/lib/mysql
+      - ./mysql/InitDB.sh:/docker-entrypoint-initdb.d/InitDB.sh
+      - ../web/src/SSRPanel/sql/db.sql:/2.sql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=password
