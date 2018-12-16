@@ -1,0 +1,3 @@
+[submodule "web/src/SSRPanel"]
+	path = web/src/SSRPanel
+	url = https://github.com/ssrpanel/SSRPanel.git
