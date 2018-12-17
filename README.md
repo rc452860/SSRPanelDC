@@ -19,7 +19,7 @@ git clone --recursive https://github.com/rc452860/SSRPanelDC.git
 ```
 
 ## 启动数据库
-默认用户名密码是root 修改start.sh脚本中的PASSWORD值即可
+默认用户名密码是root 修改start.sh脚本中的PASSWORD值即可 数据库名为ssrpanel 如果修改请对应修改web/src下的.env配置文件
 ```
 cd SSRPanelDC\db
 bash start.sh
