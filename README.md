@@ -19,6 +19,7 @@ git clone --recursive https://github.com/rc452860/SSRPanelDC.git
 ```
 
 ## 启动数据库
+默认用户名密码是root 修改start.sh脚本中的PASSWORD值即可
 ```
 cd SSRPanelDC\db
 bash start.sh
