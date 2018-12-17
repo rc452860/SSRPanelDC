@@ -33,3 +33,8 @@ docker-compose up
 ```
 
 等待安装完成访问本机ip地址即可.
+
+后台运行使用
+```
+docker-compose up -d
+```
